@@ -1,0 +1,45 @@
+.ripple {
+    width: fit-content;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    background-color: #4c4b91;
+    scale: 1;
+    position: absolute;
+    pointer-events: none;
+    animation: rippleIn ease-in-out .25s;
+    border-radius: 100%;
+    opacity: .3;
+}
+
+.ripple-effect.out {
+    opacity: 0;
+    animation: rippleOut ease-in-out .25s;
+}
+
+@keyframes rippleIn {
+    0% {
+        scale: 0;
+        opacity: .3;
+    }
+
+    100% {
+        scale: 1;
+        opacity: .3;
+    }
+}
+
+@keyframes rippleOut {
+    0% {
+        scale: 1;
+        opacity: .3;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 0;
+    }
+}
