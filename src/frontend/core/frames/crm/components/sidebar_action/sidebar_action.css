@@ -1,0 +1,15 @@
+.sidebar-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #FFF;
+    color: #000;
+    border-radius: .8em;
+    cursor: pointer;
+}
+
+.sidebar-link > .tooltip {
+    display: none;
+}
