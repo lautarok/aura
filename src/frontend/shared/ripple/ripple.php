@@ -17,16 +17,17 @@ class Ripple extends Component {
     public function render(array $props = []): string {
         $this->assetLoader->load(__DIR__ . "/ripple.css");
         $this->assetLoader->load(__DIR__ . "/ripple.js");
-        $assetsHtml = $this->assetLoader->toHtml();
 
         $children = $props["children"] ?? null;
         $borderRadius = $props["borderRadius"] ?? "1em";
+        $light = $props["light"] ?? false;
+
+        $className = $light ? "light" : "";
 
         return <<<HTML
-            <div class="ripple" style="border-radius: $borderRadius;">
+            <div class="ripple $className" style="border-radius: $borderRadius;">
                 $children
             </div>
-            $assetsHtml
         HTML;
     }
 }

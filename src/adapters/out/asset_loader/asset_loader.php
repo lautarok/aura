@@ -31,6 +31,10 @@ class AssetLoader implements AssetLoaderPort {
     }
 
     public function load(string $path): void {
+        if (in_array($path, $this->loadedList)) {
+            return;
+        }
+
         $this->loadedList[] = $path;
     }
 
@@ -58,8 +62,6 @@ class AssetLoader implements AssetLoaderPort {
                 HTML;
             }
         }
-        
-        $this->loadedList = [];
 
         return $outputHtml;
     }

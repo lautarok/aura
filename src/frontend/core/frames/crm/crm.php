@@ -10,6 +10,9 @@
     require_once __DIR__ . "/../../../shared/button/button.php";
     use frontend\shared\button\Button;
 
+    require_once __DIR__ . "/components/sidebar/sidebar.php";
+    use frontend\core\frames\crm\components\sidebar\Sidebar;
+
     class CrmFrame extends Component {
         private AssetLoaderPort $assetLoader;
 
@@ -21,13 +24,34 @@
             $pageTitle = $props["title"] ?? "Aura CRM";
             $pageContent = $props["content"] ?? null;
 
+            $sidebarHtml = (new Sidebar($this->assetLoader))->render([
+                "links" => [
+                    [
+                        "href"  => "#",
+                        "label" => null,
+                        "icon"  => null
+                    ],
+                    [
+                        "href"  => "#",
+                        "label" => null,
+                        "icon"  => null
+                    ],
+                    [
+                        "href"  => "#",
+                        "label" => null,
+                        "icon"  => null
+                    ]
+                ]
+            ]);
+
             $this->assetLoader->load(__DIR__ . "/crm.css");
             $this->assetLoader->load(__DIR__ . "/../../styles/_normalize.css");
+
             $assetsHtml = $this->assetLoader->toHtml();
 
             return <<<HTML
                 <!DOCTYPE html>
-                <html>
+                <html lang="es">
                     <head>
                         <meta charset="utf-8" />
                         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,13 +62,9 @@
                         $assetsHtml
                     </head>
                     <body>
-                        <aside>
-                            <p class="logo">Aura CRM</p>
-                            <nav>
-                                <button>
-                            </nav>
-                        </aside>
+                        $sidebarHtml
                         <main>
+                            <p>Aura CRM</p>
                             $pageContent
                         </main>
                     </body>
