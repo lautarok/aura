@@ -2,26 +2,21 @@
 namespace frontend\features\crm;
 
 use adapters\in\router\base\RouterGroup;
-use frontend\features\crm\modules\home\CrmHomeHandler;
-use ports\AssetLoaderPort;
+use frontend\features\crm\modules\home\Home;
+use frontend\features\crm\modules\persons\Persons;
 
 class CrmRoutes extends RouterGroup {
-    private AssetLoaderPort $assetLoader;
-
-    public function __construct(AssetLoaderPort $assetLoader) {
-        $this->assetLoader = $assetLoader;
-        parent::__construct();
-    }
-
     public function getPrefix(): string {
         return "/crm";
     }
 
     public function setupRoutes(): void {
-        $this->addHandler(new CrmHomeHandler($this->assetLoader));
+        $this->registerHandler(new Home($this->context));
+        $this->registerHandler(new Persons($this->context));
     }
 
     public function handleNotFound(): void {
+        http_response_code(404);
         echo "Esta ruta no existe en el CRM";
     }
 }

@@ -2,31 +2,31 @@
 namespace frontend\shared\ripple;
 
 use frontend\core\base\Component;
-use ports\AssetLoaderPort;
+use ports\AssetManagerPort;
+use frontend\shared\html\Div;
 
 class Ripple extends Component {
-    private AssetLoaderPort $assetLoader;
-
-    public function __construct(AssetLoaderPort $assetLoader) {
-        $this->assetLoader = $assetLoader;
-    }
-
     public function render(array $props = []): string {
-        $this->assetLoader->load(__DIR__ . "/ripple.css");
-        $this->assetLoader->load(__DIR__ . "/ripple.js");
+        $assetManager = $this->context->adapter(AssetManagerPort::class);
+        $assetManager->load("/frontend/shared/ripple/ripple.css");
+        $assetManager->load("/frontend/shared/ripple/ripple.js");
 
-        $children = $props["children"] ?? null;
+        $children = $this->parseChildren($props["children"] ?? null);
         $borderRadius = $props["borderRadius"] ?? "1em";
         $light = $props["light"] ?? false;
 
-        $className = $light ? "light" : "";
+        $className = $props["className"] ?? "";
+        $className .= $light ? "light" : "";
 
-        return <<<HTML
-            <div class="ripple $className">
-                <div class="ripple-effect-container" style="border-radius: $borderRadius;">
-                </div>
+        return $this->component(Div::class, [
+            "className" => "$className ripple",
+            "children" => [
+                $this->component(Div::class, [
+                    "className" => "ripple-effect-container",
+                    "style" => "border-radius: $borderRadius;"
+                ]),
                 $children
-            </div>
-        HTML;
+            ]
+        ]);
     }
 }

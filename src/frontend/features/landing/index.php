@@ -1,4 +1,0 @@
-<?php
-    $ssr = new Ssr
-?>
-

@@ -16,7 +16,7 @@
 }
 
 .ripple-effect {
-    background-color: #4c4b91;
+    background-color: var(--ripple-color);
     scale: 1;
     position: absolute;
     animation: rippleIn ease-in-out .25s;
