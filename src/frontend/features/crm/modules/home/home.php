@@ -31,22 +31,12 @@ class CrmHomeHandler extends Handler {
         $crmFrame = new CrmFrame($this->assetLoader);
 
         $buttonElement = (new Button($this->assetLoader))->render();
-        $rippleElement = (new Ripple($this->assetLoader))->render([
-            "children"      => $buttonElement,
-            "borderRadius"  => "1000em"
-        ]);
-        $rippleElement2 = (new Ripple($this->assetLoader))->render([
-            "children"      => $buttonElement,
-            "borderRadius"  => "1000em"
-        ]);
 
         $this->assetLoader->load(__DIR__ . "/home.css");
 
         return $crmFrame->render([
             "content" => <<<HTML
-                <h1>Bienvenido</h1>
-                <div style="width: fit-content;">$rippleElement</div>
-                <div style="width: fit-content;">$rippleElement2</div>
+                <br/><br/>
             HTML
         ]);
     }

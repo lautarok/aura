@@ -1,13 +1,8 @@
 <?php
 namespace frontend\features\crm;
 
-require_once __DIR__ . "/../../../adapters/in/router/base/router_group.php";
 use adapters\in\router\base\RouterGroup;
-
-require_once __DIR__ . "/modules/home/home.php";
 use frontend\features\crm\modules\home\CrmHomeHandler;
-
-require_once __DIR__ . "/../../../ports/asset_loader.php";
 use ports\AssetLoaderPort;
 
 class CrmRoutes extends RouterGroup {

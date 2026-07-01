@@ -20,7 +20,6 @@ aside > .box {
     height: 100%;
     border-radius: 1.3em;
     background-color: rgb(255 255 255 / 40%);
-    overflow: hidden;
     border-bottom-width: 2px;
     backdrop-filter: blur(15px);
     padding: .5em;

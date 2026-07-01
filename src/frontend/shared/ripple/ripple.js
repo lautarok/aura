@@ -1,6 +1,8 @@
 const rippleElementList = document.querySelectorAll(".ripple")
 
 rippleElementList.forEach(element => {
+    const rippleContainerElement = element.querySelector(":scope > .ripple-effect-container")
+
     element.addEventListener("pointerdown", event => requestAnimationFrame(() => {
         const elementRect = element.getBoundingClientRect(),
             elementTop = elementRect.top,
@@ -18,19 +20,19 @@ rippleElementList.forEach(element => {
         rippleEffectElement.style.setProperty("width", `${elementSize}px` )
         rippleEffectElement.style.setProperty("height", `${elementSize}px` )
 
-        element.appendChild(rippleEffectElement)
+        rippleContainerElement.appendChild(rippleEffectElement)
     }))
 })
 
 window.addEventListener("pointerup", () => {
     const rippleEffectElementList = document.querySelectorAll(".ripple-effect")
 
-    rippleEffectElementList.forEach(element => {
+    rippleEffectElementList.forEach(element => requestAnimationFrame(() => {
         setTimeout(() => {
             element.classList.add("out")
             setTimeout(() => {
                 element.remove()
             }, 1050)
         }, 205)
-    })
+    }))
 })

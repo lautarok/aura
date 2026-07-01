@@ -22,7 +22,9 @@ class Ripple extends Component {
         $className = $light ? "light" : "";
 
         return <<<HTML
-            <div class="ripple $className" style="border-radius: $borderRadius;">
+            <div class="ripple $className">
+                <div class="ripple-effect-container" style="border-radius: $borderRadius;">
+                </div>
                 $children
             </div>
         HTML;
