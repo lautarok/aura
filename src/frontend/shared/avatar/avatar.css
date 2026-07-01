@@ -2,12 +2,19 @@
     width: 3em;
     height: 3em;
     border-radius: 50%;
-    background-color: #FFF;
+    background-color: rgb(12, 76, 119);
+    color: #FFF;
     font-weight: 600;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000;
     font-size: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+    .avatar {
+        background-color: #a5d6a7;
+        color: #000;
+    }
 }

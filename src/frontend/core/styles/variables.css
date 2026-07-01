@@ -1,0 +1,18 @@
+:root {
+    --background-color: #EEE;
+    --foreground-color: #000;
+    --card-color: #FFF;
+    --card-border-color: #CCC;
+    --ripple-color: #8281cc;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #263238;
+        --foreground-color: #dbe3e7;
+        --card-color: #3a4850;
+        --card-color-50: rgba(58, 72, 80, 0.5);
+        --card-border-color: rgb(255 255 255 / 10%);
+        --ripple-color: #a4a4daa4;
+    }
+}

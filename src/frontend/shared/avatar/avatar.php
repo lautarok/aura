@@ -2,27 +2,25 @@
 namespace frontend\shared\avatar;
 
 use frontend\core\base\Component;
-use ports\AssetLoaderPort;
+use ports\AssetManagerPort;
+use frontend\shared\html\Div;
+use frontend\shared\html\Span;
 
 class Avatar extends Component {
-    private AssetLoaderPort $assetLoader;
-
-    public function __construct(AssetLoaderPort $assetLoader) {
-        $this->assetLoader = $assetLoader;
-    }
-
     public function render(array $props = []): string {
-        $this->assetLoader->load(__DIR__ . "/avatar.css");
+        $assetManager = $this->context->adapter(AssetManagerPort::class);
+        $assetManager->load("/frontend/shared/avatar/avatar.css");
 
-        $letters = "AK";
+        $letters = "Aa";
         if (isset($props["letters"])) {
-            $letters = $props["letters"];
+            $letters = substr($props["letters"], 0, 2);
         }
 
-        return <<<HTML
-            <div class="avatar">
-                <span>{$letters[0]}{$letters[1]}</span>
-            </div>
-        HTML;
+        return $this->component(Div::class, [
+            "className" => "avatar",
+            "children" => $this->component(Span::class, [
+                "value" => $letters
+            ])
+        ]);
     }
 }

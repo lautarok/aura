@@ -12,42 +12,91 @@
     │   │       │   └── router_group.php
     │   │       └── router.php
     │   └── out
-    │       └── asset_loader
-    │           └── asset_loader.php
+    │       ├── asset_manager
+    │       │   └── asset_manager.php
+    │       └── context
+    │           └── context.php
     ├── api
     │   ├── health
-    │   │   └── health.php
+    │   │   └── handler.php
     │   └── routes.php
+    ├── autoloader.php
     ├── frontend
     │   ├── core
     │   │   ├── base
     │   │   │   └── component.php
+    │   │   ├── components
+    │   │   │   └── router_outlet
+    │   │   │       └── router_outlet.php
     │   │   ├── frames
-    │   │   │   └── crm
-    │   │   │       ├── components
-    │   │   │       │   ├── sidebar.css
-    │   │   │       │   └── sidebar.php
-    │   │   │       ├── crm.css
-    │   │   │       └── crm.php
     │   │   ├── scripts
+    │   │   │   ├── common
+    │   │   │   │   └── default.js
+    │   │   │   ├── global-store
+    │   │   │   │   └── global-store.js
+    │   │   │   └── router
+    │   │   │       ├── router-events.js
+    │   │   │       └── router.js
     │   │   └── styles
     │   │       └── _normalize.css
     │   ├── features
     │   │   ├── crm
     │   │   │   ├── core
     │   │   │   │   └── scripts
-    │   │   │   │       └── router.js
+    │   │   │   ├── frame
+    │   │   │   │   ├── components
+    │   │   │   │   │   ├── header
+    │   │   │   │   │   │   ├── header.css
+    │   │   │   │   │   │   └── header.php
+    │   │   │   │   │   ├── sidebar
+    │   │   │   │   │   │   ├── sidebar.css
+    │   │   │   │   │   │   └── sidebar.php
+    │   │   │   │   │   ├── sidebar_action
+    │   │   │   │   │   │   ├── sidebar_action.css
+    │   │   │   │   │   │   └── sidebar_action.php
+    │   │   │   │   │   └── user_card
+    │   │   │   │   │       ├── user_card.css
+    │   │   │   │   │       └── user_card.php
+    │   │   │   │   ├── frame.css
+    │   │   │   │   ├── frame.js
+    │   │   │   │   └── frame.php
     │   │   │   ├── modules
-    │   │   │   │   └── home
-    │   │   │   │       ├── home.css
-    │   │   │   │       └── home.php
+    │   │   │   │   ├── home
+    │   │   │   │   │   ├── home.css
+    │   │   │   │   │   └── home.php
+    │   │   │   │   └── persons
+    │   │   │   │       ├── persons.css
+    │   │   │   │       └── persons.php
     │   │   │   └── routes.php
     │   │   └── landing
-    │   │       └── index.php
+    │   │       ├── landing.php
+    │   │       └── routes.php
     │   └── shared
-    │       ├── button
-    │       │   ├── button.css
-    │       │   └── button.php
+    │       ├── avatar
+    │       │   ├── avatar.css
+    │       │   └── avatar.php
+    │       ├── html
+    │       │   ├── aside.php
+    │       │   ├── button.php
+    │       │   ├── div.php
+    │       │   ├── document.php
+    │       │   ├── h1.php
+    │       │   ├── header.php
+    │       │   ├── link.php
+    │       │   ├── main.php
+    │       │   ├── nav.php
+    │       │   ├── p.php
+    │       │   └── span.php
+    │       ├── icons
+    │       │   ├── base
+    │       │   │   └── icon.php
+    │       │   └── catalog
+    │       │       ├── circle_check.php
+    │       │       ├── file.php
+    │       │       ├── gear.php
+    │       │       ├── home.php
+    │       │       ├── people_multiple.php
+    │       │       └── plant.php
     │       ├── logo
     │       │   ├── logo.css
     │       │   └── logo.php
@@ -57,7 +106,8 @@
     │           └── ripple.php
     ├── index.php
     └── ports
-        └── asset_loader.php
+        ├── asset_manager.php
+        └── context.php
 
-30 directories, 27 files
+45 directories, 62 files
 ```

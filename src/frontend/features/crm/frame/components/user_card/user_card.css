@@ -1,0 +1,35 @@
+.user-card,
+.user-card > button {
+    width: fit-content;
+    height: fit-content;
+}
+
+.user-card > div > button {
+    padding: .5em .75em;
+    padding-left: 1em;
+    background-color: var(--card-color);
+    border-radius: 1000em;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    border: solid 1px var(--card-border-color);
+    border-bottom-width: 2px;
+}
+
+.user-card > div > button > div {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: .2em;
+}
+
+.user-card > div > button > div > p {
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1em;
+}
+
+.user-card > div > button > div > p:last-child {
+    font-size: .9em;
+    font-weight: 400;
+}

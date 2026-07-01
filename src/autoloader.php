@@ -18,6 +18,18 @@ class AutoLoader {
                 include_once $classPathVariant;
                 return;
             }
+
+            $classPathVariant = preg_replace("/([a-zA-Z0-9-])_(\w+)(\.php)$/", "$1$3", $classPath);
+            if (file_exists($classPathVariant)) {
+                include_once $classPathVariant;
+                return;
+            }
+
+            $classPathVariant = preg_replace("/_[^_]+$/", "", $classPath) . ".php";
+            if (file_exists($classPathVariant)) {
+                include_once $classPathVariant;
+                return;
+            }
         });
     }
 

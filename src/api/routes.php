@@ -10,7 +10,7 @@ class ApiRoutes extends RouterGroup {
     }
 
     public function setupRoutes(): void {
-        $this->addHandler(new HealthHandler);
+        $this->registerHandler(new HealthHandler($this->context));
     }
 
     public function handleNotFound(): void {

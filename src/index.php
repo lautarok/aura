@@ -4,8 +4,11 @@ new Autoloader;
 
 use adapters\in\router\Router;
 use frontend\features\crm\CrmRoutes;
-use adapters\out\asset_loader\AssetLoader;
+use frontend\features\landing\LandingRoutes;
+use adapters\out\asset_manager\AssetManager;
+use adapters\out\context\Context;
 use api\ApiRoutes;
+use ports\AssetManagerPort;
 
 class Bootstrap {
     public function __construct() {
@@ -13,14 +16,22 @@ class Bootstrap {
     }
 
     private function initialize() {
-        $assetLoader = new AssetLoader();
+        $context = new Context();
+        $context->registerStringValue("app:name", "Aura CRM");
+        $context->registerStringValue("app:version", "b-0.0.1");
+
+        $assetManager = new AssetManager();
+        $context->registerAdapter(AssetManagerPort::class, $assetManager);
 
         $router = new Router;
 
-        $apiRoutes = new ApiRoutes;
+        $apiRoutes = new ApiRoutes($context);
         $router->registerGroup($apiRoutes);
 
-        $crmRoutes = new CrmRoutes($assetLoader);
+        $landingRoutes = new LandingRoutes($context);
+        $router->registerGroup($landingRoutes);
+
+        $crmRoutes = new CrmRoutes($context);
         $router->registerGroup($crmRoutes);
 
         $router->handleRequest();

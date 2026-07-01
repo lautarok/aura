@@ -1,43 +1,40 @@
 <?php
 namespace frontend\features\crm\modules\home;
 
-require_once __DIR__ . "/../../../../core/frames/crm/crm.php";
-use frontend\core\frames\crm\CrmFrame;
+use frontend\features\crm\frame\CrmFrame;
+use frontend\core\base\Component;
+use ports\AssetManagerPort;
+use frontend\shared\html\H1;
+use frontend\features\crm\modules\home\components\banner\Banner;
+use frontend\shared\html\Div;
+use frontend\shared\card\Card;
 
-require_once __DIR__ . "/../../../../../adapters/in/router/base/handler.php";
-use adapters\in\router\base\Handler;
-
-require_once __DIR__ . "/../../../../../ports/asset_loader.php";
-use ports\AssetLoaderPort;
-
-require_once __DIR__ . "/../../../../shared/button/button.php";
-use frontend\shared\button\Button;
-
-require_once __DIR__ . "/../../../../shared/ripple/ripple.php";
-use frontend\shared\ripple\Ripple;
-
-class CrmHomeHandler extends Handler {
-    private AssetLoaderPort $assetLoader;
-
-    public function __construct(AssetLoaderPort $assetLoader) {
-        $this->assetLoader = $assetLoader;
+class Home extends Component {
+    public function getPath(): string {
+        return "/";
     }
 
-    public function handle(): void {
-        echo $this->render();
-    }
+    public function render(array $props = []): string {
+        $assetManager = $this->context->adapter(AssetManagerPort::class);
+        $assetManager->load("/frontend/features/crm/modules/home/home.css");
 
-    private function render(): string {
-        $crmFrame = new CrmFrame($this->assetLoader);
-
-        $buttonElement = (new Button($this->assetLoader))->render();
-
-        $this->assetLoader->load(__DIR__ . "/home.css");
-
-        return $crmFrame->render([
-            "content" => <<<HTML
-                <br/><br/>
-            HTML
+        return $this->component(CrmFrame::class, [
+            "title" => "Inicio",
+            "children" => $this->component(Div::class, [
+                "className" => "home-layout",
+                "children" => [
+                    $this->component(Banner::class),
+                    $this->component(Div::class, [
+                        "className" => "cards",
+                        "children" => [
+                            $this->component(Card::class),
+                            $this->component(Card::class),
+                            $this->component(Card::class),
+                            $this->component(Card::class)
+                        ]
+                    ])
+                ]
+            ])
         ]);
     }
 }

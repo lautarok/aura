@@ -1,0 +1,30 @@
+header {
+    width: 100%;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.3em;
+}
+
+header > .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+    align-items: flex-start;
+}
+
+header > .text > p {
+    line-height: 1;
+}
+
+header > .text > p:first-child {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+header > nav {
+    width: fit-content;
+    height: auto;
+}
