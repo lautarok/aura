@@ -1,16 +1,11 @@
 <?php
+include_once __DIR__ . "/autoloader.php";
+new Autoloader;
 
-require_once __DIR__ . "/adapters/in/router/router.php";
 use adapters\in\router\Router;
-
-require_once __DIR__ . "/frontend/features/crm/routes.php";
 use frontend\features\crm\CrmRoutes;
-
-require_once __DIR__ . "/adapters/out/asset_loader/asset_loader.php";
 use adapters\out\asset_loader\AssetLoader;
-
-require_once __DIR__ . "/api/routes.php";
-use \api\ApiRoutes;
+use api\ApiRoutes;
 
 class Bootstrap {
     public function __construct() {

@@ -1,16 +1,9 @@
 <?php
 namespace frontend\core\frames\crm\components\sidebar;
 
-include_once __DIR__ . "/../../../../base/component.php";
 use frontend\core\base\Component;
-
-include_once __DIR__ . "/../../../../../../ports/asset_loader.php";
 use ports\AssetLoaderPort;
-
-include_once __DIR__ . "/../sidebar_action/sidebar_action.php";
 use frontend\core\frames\crm\components\sidebar_action\SidebarAction;
-
-include_once __DIR__ . "/../../../../../../shared/ripple/ripple.php";
 use frontend\shared\ripple\Ripple;
 
 class Sidebar extends Component {
