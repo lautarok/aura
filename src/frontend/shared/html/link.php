@@ -8,9 +8,10 @@ class Link extends Component {
         $children = $this->parseChildren($props["children"] ?? null);
         $className = $props["className"] ?? null;
         $href = $props["href"] ?? "#";
+        $component = $props["component"] ?? null;
 
         return <<<HTML
-            <a href="$href" class="$className">
+            <a href="$href" class="$className" data-component="$component">
                 $children
             </a>
         HTML;

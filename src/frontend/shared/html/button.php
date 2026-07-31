@@ -7,9 +7,10 @@ class Button extends Component {
     public function render(array $props = []): string {
         $children = $this->parseChildren($props["children"] ?? null);
         $className = $props["className"] ?? null;
+        $component = $props["component"] ?? null;
 
         return <<<HTML
-            <button class="$className">
+            <button data-component="$component" class="$className">
                 $children
             </button>
         HTML;

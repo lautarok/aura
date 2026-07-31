@@ -8,8 +8,9 @@ class Context implements ContextPort {
     private array $stringValues = [];
     private array $intValues = [];
 
-    public function registerAdapter(string $key, mixed $adapter): void {
-        $this->adapters[$key] = $adapter;
+    public function registerAdapter(string $key, string $adapter, ?array $params = []): void {
+        $adapterInstance = new $adapter(...$params);
+        $this->adapters[$key] = $adapterInstance;
     }
 
     public function registerStringValue(string $key, string $value): void {

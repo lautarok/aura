@@ -5,12 +5,8 @@ use adapters\in\router\base\RouterGroup;
 use frontend\features\landing\LandingPage;
 
 class LandingRoutes extends RouterGroup {
-    public function getPrefix(): string {
-        return "/";
-    }
-
     public function setupRoutes(): void {
-        $this->registerHandler(new LandingPage($this->context));
+        $this->registerHandler("/", LandingPage::class, [$this->context]);
     }
 
     public function handleNotFound(): void {

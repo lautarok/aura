@@ -1,10 +1,10 @@
-.ripple {
+[data-component=ripple] {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-.ripple-effect-container {
+[data-component=ripple] .effect_container {
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -15,7 +15,7 @@
     z-index: 999;
 }
 
-.ripple-effect {
+[data-component=ripple] .effect_container__effect {
     background-color: var(--ripple-color);
     scale: 1;
     position: absolute;
@@ -25,11 +25,11 @@
     z-index: 999;
 }
 
-.ripple.light .ripple-effect {
-    background-color: #FFF;
+[data-component=ripple].primary .effect_container__effect {
+    background-color: var(--primary-ripple-color);
 }
 
-.ripple-effect.out {
+[data-component=ripple] .effect_container__effect--out {
     opacity: 0;
     animation: rippleOut ease-in-out .25s;
 }

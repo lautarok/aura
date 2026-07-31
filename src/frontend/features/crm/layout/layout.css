@@ -1,0 +1,30 @@
+[data-component="crm_layout"] {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0;
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    width: 100%;
+    height: 100%;
+}
+
+[data-component="crm_layout"] > main {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+[data-component="crm_layout"] > main > p:first-child {
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+@media only screen and (min-width: 100em) {
+    [data-component="crm_layout"] > main {
+        padding: 1em calc(50vw - 50em);
+    }
+}

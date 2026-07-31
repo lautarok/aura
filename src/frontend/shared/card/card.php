@@ -10,8 +10,12 @@ class Card extends Component {
         $assetManager = $this->context->adapter(AssetManagerPort::class);
         $assetManager->load("/frontend/shared/card/card.css");
 
+        $component = $props["component"] ?? null;
+
         return $this->component(Div::class, [
-            "className" => "card " . $props["className"] ?? "",
+            "component" => $component,
+            "className" => "card " . ($props["className"] ?? ""),
+            "style" => $props["style"] ?? null,
             "children" => $this->parseChildren($props["children"] ?? null)
         ]);
     }

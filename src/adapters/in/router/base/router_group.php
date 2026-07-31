@@ -16,15 +16,14 @@ abstract class RouterGroup {
         $this->setupRoutes(); 
     }
 
-    public function getPrefix(): string {
-        return "/";
+    public function registerHandler(string $path, string $handler, array $params = []): void {
+        $this->handlerList[$path] = [
+            "class" => $handler,
+            "params" => $params
+        ];
     }
 
-    public function registerHandler(Handler|Component $handler): void {
-        $this->handlerList[$handler->getPath()] = $handler;
-    }
-
-    public function getHandler(string $path): Handler|Component | null {
+    public function getHandler(string $path): array | null {
         return $this->handlerList[$path] ?? null;
     }
 

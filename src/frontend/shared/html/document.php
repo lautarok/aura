@@ -7,12 +7,14 @@ use ports\AssetManagerPort;
 class Document extends Component {
     public function render(array $props = []): string {
         $title = $props["title"] ?? $this->getDefaultTitle();
+        $children = $this->parseChildren($props["children"] ?? null);
 
         $assetManager = $this->context->adapter(AssetManagerPort::class);
         $sourcesHtml = $assetManager->toHtml();
 
-        $children = $this->parseChildren($props["children"] ?? null);
-        $headerChildren = $this->parseChildren($props["headerChildren"]);
+        $body = $this->component(Body::class, [
+            "children" => $children
+        ]);
 
         return <<<HTML
             <!DOCTYPE html>
@@ -20,12 +22,9 @@ class Document extends Component {
                 <head>
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                     <title>$title</title>
-                    $headerChildren
                     $sourcesHtml
                 </head>
-                <body>
-                    $children
-                </body>
+                $body
             </html>
         HTML;
     }

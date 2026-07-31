@@ -6,13 +6,11 @@ use frontend\features\crm\modules\home\Home;
 use frontend\features\crm\modules\persons\Persons;
 
 class CrmRoutes extends RouterGroup {
-    public function getPrefix(): string {
-        return "/crm";
-    }
-
     public function setupRoutes(): void {
-        $this->registerHandler(new Home($this->context));
-        $this->registerHandler(new Persons($this->context));
+        $this->context->registerStringValue("app:name", "Aura CRM");
+
+        $this->registerHandler("/", Home::class, [$this->context]);
+        $this->registerHandler("/persons", Persons::class, [$this->context]);
     }
 
     public function handleNotFound(): void {

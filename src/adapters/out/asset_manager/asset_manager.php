@@ -33,7 +33,7 @@ class AssetManager implements AssetManagerPort {
 
             return [
                 "path" => $srcPath,
-                "mime" => $mimeType
+                "mimeType" => $mimeType
             ];
         }, $this->loadedList);
     }

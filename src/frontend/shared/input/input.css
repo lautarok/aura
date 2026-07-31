@@ -1,0 +1,61 @@
+[data-component="input"] {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: .25em;
+}
+
+[data-component="input"] > .box {
+    width: 100%;
+    height: 3em;
+    background-color: var(--card-color);
+    border: solid 1px var(--card-border-color);
+    border-radius: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: .75em;
+    align-items: center;
+    padding: 0 1em;
+    outline: var(--outline-width) solid transparent;
+    outline-offset: -var(--outline-width);
+    transition-property: outline-offset, outline-color;
+    transition-timing-function: ease-in-out;
+    transition-duration: .15s;
+}
+
+[data-component="input"] > .box:focus-within {
+    outline-offset: 0;
+    outline-color: var(--outline-color);
+}
+
+[data-component="input"] > .box:has(:nth-child(2)) {
+    grid-template-columns: auto 1fr;
+}
+
+[data-component="input"] > .box:has(:nth-child(3)) {
+    grid-template-columns: auto 1fr auto;
+}
+
+[data-component="input"] > .box > input {
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    color: inherit;
+}
+
+[data-component="input"] > .box > .prefix,
+[data-component="input"] > .box > .suffix {
+    width: auto;
+    height: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .7;
+}
+
+[data-component="input"] > .box > .prefix {
+    padding-right: .75em;
+    border-right: solid 1.5px var(--card-border-color);
+}

@@ -1,63 +1,67 @@
-import Router from "/frontend/core/scripts/router/router.js"
-    
-Router.get().routerEvents.listenLoadEnd(() => {
-    const rippleElementList = document.querySelectorAll(".ripple")
+import Component from "/frontend/core/base/component.js"
+import DomEventManager from "/frontend/core/services/dom_event_manager/dom_event_manager.js"
+import Container from "/frontend/core/services/container/container.js"
 
-    const pointerDownListeners = new WeakMap()
+class Ripple extends Component {
+    domEventManager = Container.service(DomEventManager)
 
-    const handlePointerDown = (event, element) => requestAnimationFrame(() => {
-        if (!element) return
+    handlePointerDown(event) {
+        const target = event.currentTarget
 
-        const rippleContainerElement = element.querySelector(":scope > .ripple-effect-container"),
-            elementRect = element.getBoundingClientRect(),
-            elementTop = elementRect.top,
-            elementLeft = elementRect.left,
-            elementSize = Math.max(elementRect.width, elementRect.height) * 2.5,
-            mouseY = event.pageY,
-            mouseX = event.pageX
+        return requestAnimationFrame(() => {
+            if (!target) return
 
-        const rippleEffectElement = document.createElement("div")
-        rippleEffectElement.classList.add("ripple-effect")
+            const effectContainerElement = target
+                .querySelector(":scope .effect_container")
 
-        rippleEffectElement.style.setProperty("top", `${(mouseY - elementTop) - (elementSize / 2)}px` )
-        rippleEffectElement.style.setProperty("left", `${(mouseX - elementLeft) - (elementSize / 2)}px` )
+            const elementRect = target.getBoundingClientRect(),
+                elementTop = elementRect.top,
+                elementLeft = elementRect.left,
+                elementSize = Math.max(elementRect.width, elementRect.height) * 2.5,
+                mouseY = event.pageY,
+                mouseX = event.pageX
 
-        rippleEffectElement.style.setProperty("width", `${elementSize}px` )
-        rippleEffectElement.style.setProperty("height", `${elementSize}px` )
+            const effectElement = document.createElement("div")
+                effectElement.classList.add("effect_container__effect")
 
-        rippleContainerElement.appendChild(rippleEffectElement)
-    })
+                effectElement.style
+                    .setProperty("top", `${(mouseY - elementTop) - (elementSize / 2)}px` )
+                effectElement.style
+                    .setProperty("left", `${(mouseX - elementLeft) - (elementSize / 2)}px` )
+                effectElement.style
+                    .setProperty("width", `${elementSize}px` )
+                effectElement.style
+                    .setProperty("height", `${elementSize}px` )
 
-    const handlePointerUp = event => {
-        const rippleEffectElementList = document.querySelectorAll(".ripple-effect")
-
-        rippleEffectElementList.forEach(element => requestAnimationFrame(() => {
-            setTimeout(() => {
-                element.classList.add("out")
-                setTimeout(() => {
-                    element.remove()
-                }, 1050)
-            }, 205)
-        }))
-    }
-
-    rippleElementList.forEach(element => {
-        const listener = (event) => handlePointerDown(event, element)
-        pointerDownListeners.set(element, listener)
-        element.addEventListener("pointerdown", listener)
-    })
-
-    window.addEventListener("pointerup", handlePointerUp)
-    window.addEventListener("dragend", handlePointerUp)
-
-    return () => {
-        rippleElementList.forEach(element => {
-            const listener = pointerDownListeners.get(element)
-            if (!listener) return
-            element.removeEventListener("pointerdown", listener)
+                effectContainerElement.appendChild(effectElement)
         })
-
-        window.removeEventListener("pointerup", handlePointerUp)
-        window.removeEventListener("dragend", handlePointerUp)
     }
-})
+
+    handleCancel(event) {
+        document.querySelectorAll("[data-component=ripple] .effect_container__effect")
+            .forEach(element => requestAnimationFrame(() => {
+                setTimeout(() => {
+                    element.classList.add("effect_container__effect--out")
+                    setTimeout(() => {
+                        element.remove()
+                    }, 1050)
+                }, 25)
+            }))
+    }
+
+    mount() {
+        document.querySelectorAll("[data-component=ripple]")
+            .forEach(rippleElement => {
+                this.domEventManager.listen(
+                    rippleElement,
+                    "pointerdown",
+                    this.handlePointerDown.bind(this)
+                )
+            })
+
+        this.domEventManager.listen(window, "pointerup", this.handleCancel.bind(this))
+        this.domEventManager.listen(window, "dragend", this.handleCancel.bind(this))
+    }
+}
+
+new Ripple

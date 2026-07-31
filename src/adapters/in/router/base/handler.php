@@ -10,10 +10,6 @@ abstract class Handler {
         $this->context = $context;
     }
 
-    public function getPath(): string {
-        return "/";
-    }
-
     public function handle(): void {
         echo "No implementado";
     }

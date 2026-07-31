@@ -15,7 +15,7 @@ abstract class Icon extends Component {
             return $context;
         }
 
-        return 24;
+        return 20;
     }
 
     public function render(array $props = []): string {

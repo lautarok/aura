@@ -1,0 +1,42 @@
+[data-component="welcome"] {
+    width: 100%;
+    height: fit-content;
+    border-radius: 2em;
+    background-size: cover;
+    position: relative;
+}
+
+[data-component="welcome"] > .content {
+    width: 100%;
+    height: 100%;
+    padding: 1.5em;
+    position: relative;
+    background-color: var(--card-color-50);
+    border: solid 1px var(--card-border-color);
+    border-radius: 2em;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.2em;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+[data-component="welcome"] > .content > .text {
+    display: flex;
+    flex-direction: column;
+    font-size: .8em;
+}
+
+[data-component="welcome"] > .content > .text > h2 {
+    font-size: 2em;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+[data-component="welcome"] > .content > .text > p:nth-child(3) {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 1em;
+    margin-bottom: .5em;
+}

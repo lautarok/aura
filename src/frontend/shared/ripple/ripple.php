@@ -13,16 +13,17 @@ class Ripple extends Component {
 
         $children = $this->parseChildren($props["children"] ?? null);
         $borderRadius = $props["borderRadius"] ?? "1em";
-        $light = $props["light"] ?? false;
+        $primary = $props["primary"] ?? false;
 
         $className = $props["className"] ?? "";
-        $className .= $light ? "light" : "";
+        $className .= $primary ? " primary" : "";
 
         return $this->component(Div::class, [
-            "className" => "$className ripple",
+            "component" => "ripple",
+            "className" => $className,
             "children" => [
                 $this->component(Div::class, [
-                    "className" => "ripple-effect-container",
+                    "className" => "effect_container",
                     "style" => "border-radius: $borderRadius;"
                 ]),
                 $children

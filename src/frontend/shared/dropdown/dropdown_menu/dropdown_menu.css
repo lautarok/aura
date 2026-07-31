@@ -1,0 +1,83 @@
+[data-component="dropdown_menu"] {
+    max-width: 50vw;
+    max-height: 50vh;
+    position: absolute;
+    background-color: var(--card-color-50);
+    opacity: 0;
+    transform: translateY(1.5em);
+    pointer-events: none;
+    transition-property: opacity, transform;
+    transition-duration: .1s;
+    transition-timing-function: ease-in-out;
+    z-index: 999;
+}
+
+[data-component="dropdown_menu"] .dropdown__menu__header {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+[data-component="dropdown_menu"] .dropdown__menu__header__title {
+    font-size: 1em;
+    font-weight: 600;
+    user-select: none;
+    opacity: .75;
+}
+
+[data-component="dropdown_menu"].dropdown__menu--top-left {
+    top: calc(100% + .5em);
+    left: 0;
+    transform: translateY(1.5em);
+}
+
+[data-component="dropdown_menu"].dropdown__menu--bottom-left {
+    bottom: calc(100% + .5em);
+    left: 0;
+    transform: translateY(-1.5em);
+}
+
+[data-component="dropdown_menu"].dropdown__menu--top-right {
+    top: calc(100% + .5em);
+    right: 0;
+    transform: translateY(1.5em);
+}
+
+[data-component="dropdown_menu"].dropdown__menu--bottom-right {
+    bottom: calc(100% + .5em);
+    right: 0;
+    transform: translateY(-1.5em);
+}
+
+[data-component="dropdown_menu"].dropdown__menu--left-top {
+    left: calc(100% + .5em);
+    top: 0;
+    transform: translateX(1.5em);
+}
+
+[data-component="dropdown_menu"].dropdown__menu--left-bottom {
+    left: calc(100% + .5em);
+    bottom: 0;
+    transform: translateX(1.5em);
+}
+
+[data-component="dropdown_menu"].dropdown__menu--right-bottom {
+    right: calc(100% + .5em);
+    bottom: 0;
+    transform: translateX(-1.5em);
+}
+
+[data-component="dropdown_menu"].dropdown__menu--right-bottom {
+    right: calc(100% + .5em);
+    bottom: 0;
+    transform: translateX(-1.5em);
+}
+
+[data-component="dropdown_menu"].dropdown__menu--visible {
+    opacity: 1;
+    transform: translate(0, 0);
+    pointer-events: all;
+}

@@ -7,6 +7,10 @@ class AutoLoader {
 
     private function register() {
         spl_autoload_register(function($class) {
+            if (class_exists($class)) {
+                return;
+            }
+
             $classPath = __DIR__ . "/" . $this->namespaceToPath($class);
             if (file_exists($classPath)) {
                 include_once $classPath;
